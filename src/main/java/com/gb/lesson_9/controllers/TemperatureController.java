@@ -37,6 +37,7 @@ public class TemperatureController {
         TemperatureData temperatureData = temperatureRepository.getTemperatureById(id);
         temperatureData.setTemperature(updatedTemperatureData.getTemperature());
         temperatureData.setDate(updatedTemperatureData.getDate());
+        temperatureRepository.updateTemperature(temperatureData);
     }
 
     @DeleteMapping("/temperatures/{id}")
