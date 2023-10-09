@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Diligent Aware Capybara</title>
+    <meta property="og:title" content="Diligent Aware Capybara" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+  </head>
+  <body>
+    <link rel="stylesheet" th:href="@{/styles/style.css}" />
+    <div>
+      <link th:href="@{/styles/index.css}" rel="stylesheet" />
+
+      <div class="home-container">
+        <div id="body_container" class="home-container01">
+          <span id="body_title" class="common_text">Журнал температуры:</span>
+          <form class="home-form" action="#" th:action="@{/submit}" th:object="${temperatureData}" method="post">
+            <div class="home-container2">
+              <label class="common_text">Дата</label>
+              <input type="date" class="home-textinput input" th:name="date"/>
+            </div>
+            <div class="home-container3">
+              <label class="common_text">Температура C</label>
+              <input type="number" class="home-textinput1 input" th:name="temperature"/>
+            </div>
+            <button type="submit" name="Сохранить" class="home-button button">
+              Сохранить
+            </button>
+          </form>
+          <form id="update_record" class="home-form1" action="#" th:action="@{/update}" method="post">
+            <div class="home-container04">
+              <label class="common_text">Номер записи</label>
+              <input type="number" class="home-textinput2 input"  th:name="id"/>
+            </div>
+            <div class="home-container05">
+              <label class="common_text">Дата</label>
+              <input type="date" class="home-textinput3 input" th:name="date"/>
+            </div>
+            <div class="home-container06">
+              <label class="common_text">Температура C</label>
+              <input type="number" class="home-textinput4 input" th:name="temperature"/>
+            </div>
+            <button type="submit" name="Сохранить" class="home-button1 button">
+              Обновить
+            </button>
+          </form>
+          <form id="delete_form" class="home-form2" action="#" th:action="@{/delete}" method="post">
+            <div class="home-container07">
+              <label class="common_text">Номер записи</label>
+              <input type="number" class="home-textinput5 input" th:name="id"/>
+            </div>
+            <button type="submit" name="Удалить" class="home-button2 button">
+              Удалить
+            </button>
+          </form>
+          <div id="records_root_container" class="home-container08">
+            <label id="records_container_title" class="home-text7 common_text">
+              Записи:
+            </label>
+            <div th:each="temperature: ${temperatures}" id="records_container" class="home-container5">
+              <span th:text="|${temperature.id} : ${temperature.date} : ${temperature.temperature}C|" class="common_text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
