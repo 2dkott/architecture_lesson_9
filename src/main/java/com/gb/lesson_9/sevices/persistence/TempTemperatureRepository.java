@@ -39,9 +39,10 @@ public class TempTemperatureRepository implements TemperatureRepository{
     }
 
     @Override
-    public void deleteTemperatureById(int temperatureId) {
+    public int deleteTemperatureById(int temperatureId) {
         String getAllTemperatures = String.format("delete from temperature where rowid=%s", temperatureId);
         jdbcTemplate.execute(getAllTemperatures);
+        return temperatureId;
     }
 
     @Override
@@ -57,9 +58,10 @@ public class TempTemperatureRepository implements TemperatureRepository{
     }
 
     @Override
-    public void updateTemperature(TemperatureData temperatureData) {
+    public TemperatureData updateTemperature(TemperatureData temperatureData) {
         String updateTemperature = String.format("update temperature set temp_date='%s',temperature_c=%s where rowid=%s", temperatureData.getDate(), temperatureData.getTemperature(), temperatureData.getId());
         jdbcTemplate.execute(updateTemperature);
+        return getTemperatureById(temperatureData.getId());
     }
 
     private LocalDate mapStringToLocalDate(String localDate) {

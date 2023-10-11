@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface TemperatureRepository {
     int saveTemperature(TemperatureData temperatureData);
-    void updateTemperature(TemperatureData temperatureData);
+    TemperatureData updateTemperature(TemperatureData temperatureData);
     TemperatureData getTemperatureById(int temperatureId);
-    void deleteTemperatureById(int temperatureId);
+    int deleteTemperatureById(int temperatureId);
     List<TemperatureData> getAll();
 }
